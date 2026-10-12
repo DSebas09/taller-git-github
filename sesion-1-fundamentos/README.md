@@ -3,7 +3,7 @@
 **Objetivo:** entender Git vs GitHub y crear el primer repositorio.
 
 ## Temas
-instalación, config, init, add, commit, status, log, diff, .gitignore, clone, push, pull
+config, login en GitHub con GCM, init, add, commit, status, log, diff, .gitignore, clone, push, pull
 
 ## Archivos
 - `guion.md`: guion minuto a minuto

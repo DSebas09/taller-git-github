@@ -2,10 +2,19 @@
 
 Trabaja en tu propia carpeta. Si te atoras, pregunta primero a tu compañero de al lado y luego a un instructor.
 
-## Ejercicio 0: Verifica tu entorno (5 min)
-1. `git --version` muestra una versión.
-2. `git config --global user.name` y `user.email` devuelven tus datos.
-3. `git credential-manager --version` muestra una versión.
+## Ejercicio 0: Entra a tu cuenta de GitHub (5 min)
+En Git Bash, un solo comando:
+```bash
+git credential-manager github login
+```
+1. Se abre una ventana: elige iniciar sesión con el navegador.
+2. Pon tu usuario y contraseña de GitHub, y el código de 2FA si lo tienes.
+3. El navegador muestra "Authentication Successful" y puedes cerrar la pestaña.
+
+**Criterio de éxito:** la terminal regresa sin error y el navegador confirmó la autenticación.
+**Si no tienes cuenta de GitHub:** créala en https://github.com/signup y vuelve a correr el comando.
+**Si el navegador no abre:** usa `git credential-manager github login --device` y escribe el código en https://github.com/login/device.
+**Al final de la sesión:** cierra tu sesión con `git credential-manager github logout TU-CUENTA`. Es una PC compartida.
 
 ## Ejercicio 1: Tu primer repositorio local (20 min)
 1. Crea la carpeta `mi-primer-repo`, entra y ejecuta `git init`.
