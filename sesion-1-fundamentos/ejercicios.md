@@ -1,39 +1,59 @@
 # Ejercicios sesión 1
 
-Trabaja en tu propia carpeta. Si te atoras, pregunta primero a tu compañero de al lado y luego a un instructor.
+Trabaja en tu propia carpeta y escribe todos los comandos en **Git Bash**. Si te atoras, pregunta primero a tu compañero de al lado y luego a un instructor.
 
-## Ejercicio 0: Entra a tu cuenta de GitHub (5 min)
-En Git Bash, un solo comando:
-```bash
-git credential-manager github login
-```
-1. Se abre una ventana: elige iniciar sesión con el navegador.
-2. Pon tu usuario y contraseña de GitHub, y el código de 2FA si lo tienes.
-3. El navegador muestra "Authentication Successful" y puedes cerrar la pestaña.
+## Ejercicio 0: Configura Git y entra a tu cuenta de GitHub
+Git necesita saber quién eres para firmar tus commits, y GitHub necesita confirmar que eres tú antes de dejarte subir cambios.
 
-**Criterio de éxito:** la terminal regresa sin error y el navegador confirmó la autenticación.
-**Si no tienes cuenta de GitHub:** créala en https://github.com/signup y vuelve a correr el comando.
-**Si el navegador no abre:** usa `git credential-manager github login --device` y escribe el código en https://github.com/login/device.
-**Al final de la sesión:** cierra tu sesión con `git credential-manager github logout TU-CUENTA`. Es una PC compartida.
+1. Dile a Git quién eres y revisa que quedó bien:
+    ```bash
+    git config --global user.name "Tu Nombre"
+    git config --global user.email "tu-correo@ejemplo.com"
+    git config --global init.defaultBranch main
+    git config --global --list
+    ```
+    Usa el mismo correo de tu cuenta de GitHub.
+2. Entra a tu cuenta de GitHub:
+    ```bash
+    git credential-manager github login
+    ```
+3. Se abre una ventana: elige iniciar sesión con el navegador.
+4. Pon tu usuario y contraseña de GitHub, y el código de 2FA si lo tienes.
+5. El navegador muestra "Authentication Successful" y puedes cerrar la pestaña.
 
-## Ejercicio 1: Tu primer repositorio local (20 min)
+**Lo lograste si:** `git config --global --list` muestra tu nombre y tu correo, y la terminal regresó sin error después del login.
+
+**Si algo falla:**
+- No tienes cuenta de GitHub: créala en https://github.com/signup y vuelve a correr el comando del paso 2.
+- El navegador no abre: usa `git credential-manager github login --device` y escribe el código en https://github.com/login/device.
+- Parece que no pasó nada: revisa si la ventana del navegador quedó detrás de la terminal.
+
+## Ejercicio 1: Tu primer repositorio local
+Un repositorio es una carpeta donde Git guarda el historial de tus cambios. Cada commit es una foto del proyecto en un momento dado.
+
 1. Crea la carpeta `mi-primer-repo`, entra y ejecuta `git init`.
 2. Crea `notas.md` con 3 líneas y revisa `git status`.
 3. Haz `git add notas.md` y `git commit -m "Agrega notas iniciales"`.
 4. Edita una línea, ejecuta `git diff` y anota qué ves.
 5. Haz commit del cambio.
 6. Crea `script.py` con `print("Hola Git")` y haz commit.
-7. Repite hasta tener 5 commits con mensajes claros.
+7. Repite hasta tener 5 commits. Cada mensaje debe decir qué hace el cambio, por ejemplo "Corrige la segunda línea de notas"; no uses "cambios" ni "asdf".
 8. Ejecuta `git log --oneline` y `git show HEAD`.
+
+**Lo lograste si:** `git log --oneline` muestra al menos 5 commits y cada mensaje dice qué hace el cambio.
+
+**Provoca este error y arréglalo:** edita `notas.md` y ejecuta `git commit -m "prueba"` sin hacer `git add`. Lee lo que responde Git. Después ejecuta `git add notas.md` y repite el commit.
 
 **Preguntas:** ¿qué diferencia hay entre `git diff` antes y después de `git add`? ¿Qué pasa si haces commit sin `git add`?
 
-**Error a replicar:** `git commit -m "prueba"` sin cambios preparados.
+**Si la terminal parece trabada después de un `git commit`:** olvidaste el `-m` y se abrió el editor Vim. Escribe `:q!` y Enter para salir, y repite el commit con `-m "tu mensaje"`.
 
-## Ejercicio 2: El error del .env (15 min)
+## Ejercicio 2: Archivos que no deben subirse
+Hay archivos que nunca deben entrar al repositorio, como los que guardan contraseñas o claves. El archivo `.gitignore` le dice a Git cuáles debe ignorar.
+
 1. Crea `.env` con `API_KEY=12345` y mira `git status`.
-2. Haz `git add .` y commit (el error).
-3. Corrige:
+2. Haz `git add .` y un commit.
+3. Acabas de guardar una clave en tu historial. Corrígelo:
     ```bash
     echo ".env" >> .gitignore
     git rm --cached .env
@@ -42,9 +62,13 @@ git credential-manager github login
     ```
 4. Verifica con `git status`.
 
+**Lo lograste si:** `git status` ya no menciona `.env` y el archivo sigue existiendo en tu carpeta.
+
 **Pregunta:** si ya lo hubieras subido a GitHub, ¿basta con borrarlo? ¿Qué más harías?
 
-## Ejercicio 3: Subir a GitHub (20 min)
+## Ejercicio 3: Subir a GitHub
+Hasta ahora todo vive en tu PC. Al conectar tu repositorio con GitHub puedes respaldarlo, compartirlo y traer cambios hechos en otro lado.
+
 1. En GitHub crea un repo vacío `mi-primer-repo` (sin README).
 2. Conecta y sube:
     ```bash
@@ -52,25 +76,40 @@ git credential-manager github login
     git branch -M main
     git push -u origin main
     ```
-3. Inicia sesión en el navegador cuando GCM lo pida.
-4. Edita `notas.md` desde la web y haz commit.
-5. En tu terminal ejecuta `git pull` y verifica que llegó el cambio.
+    Ya iniciaste sesión en el ejercicio 0, así que el `push` no debe pedirte nada. Si aparece una ventana para iniciar sesión, hazlo con el navegador.
+3. Edita `notas.md` desde la web de GitHub y haz commit ahí.
+4. En tu terminal ejecuta `git pull` y verifica que llegó el cambio.
 
-**Errores a replicar:**
-- Repite `git remote add origin ...` y lee `remote origin already exists`.
-- Haz un cambio en la web y otro en local sin pull, luego `git push` y lee `rejected (non-fast-forward)`.
+**Lo lograste si:** tu repo en GitHub muestra tus commits y, después del `git pull`, tu `notas.md` local tiene el cambio que hiciste en la web.
 
-## Reto final (10 min)
-1. Escribe un `README.md` con título, descripción, cómo ejecutar y autor.
-2. Commit y push.
-3. Comparte el enlace de tu repo en el canal acordado.
+**Provoca este error y arréglalo:** repite el `git remote add origin ...` del paso 2 y lee el error. El remoto ya estaba conectado, no hay que agregarlo otra vez. Compruébalo con `git remote -v`.
 
-## Autoevaluación
-- [ ] Hice al menos 5 commits con mensajes claros
-- [ ] Usé `git diff` y `git log --oneline`
-- [ ] Mantuve `.env` fuera del repo con `.gitignore`
-- [ ] Mi repo está en GitHub con README
-- [ ] Entendí el error `rejected`
+**Observa:** en GitHub abre el historial de commits y entra al commit donde agregaste el `.env`. ¿Sigue visible la `API_KEY`?
+
+### Extra opcional: el `push` rechazado
+Hazlo solo si terminaste antes. Este error lo vemos a fondo en la sesión 2.
+
+1. Edita `notas.md` en la web de GitHub y haz commit ahí.
+2. Sin hacer pull, edita `script.py` en tu terminal y haz commit. Usa **archivos distintos** en la web y en local, como dicen estos pasos.
+3. Ejecuta `git push` y lee el error: GitHub tiene un commit que tú no tienes.
+4. Arréglalo:
+    ```bash
+    git pull --no-rebase --no-edit
+    git push
+    ```
+    `git pull` trae ese commit y lo une con el tuyo; después el `push` ya pasa.
+
+## Reto final
+1. Escribe un `README.md` con un título, una descripción de qué hay en tu repo (qué es cada archivo) y tu nombre como autor.
+2. Haz commit y push.
+3. Abre tu repo en GitHub y muéstraselo a un instructor.
 
 ## Al terminar
-Quita tus credenciales de la PC: Administrador de credenciales de Windows, Credenciales de Windows, quitar `git:https://github.com`.
+Es una PC compartida, no dejes tu cuenta abierta:
+1. Mira con qué cuenta entraste y ciérrala:
+    ```bash
+    git credential-manager github list
+    git credential-manager github logout TU-CUENTA
+    ```
+    En `TU-CUENTA` va el nombre que te mostró el primer comando. Si vuelves a correr `git credential-manager github list` y ya no muestra nada, quedó cerrada.
+2. Cierra tu sesión de GitHub en el navegador.
