@@ -87,7 +87,7 @@ Hasta ahora todo vive en tu PC. Al conectar tu repositorio con GitHub puedes res
 **Observa:** en GitHub abre el historial de commits y entra al commit donde agregaste el `.env`. ¿Sigue visible la `API_KEY`?
 
 ### Extra opcional: el `push` rechazado
-Hazlo solo si terminaste antes. Este error lo vemos a fondo en la sesión 2.
+Hazlo solo si terminaste antes. Este error lo veremos a fondo en una sesión más adelante.
 
 1. Edita `notas.md` en la web de GitHub y haz commit ahí.
 2. Sin hacer pull, edita `script.py` en tu terminal y haz commit. Usa **archivos distintos** en la web y en local, como dicen estos pasos.
