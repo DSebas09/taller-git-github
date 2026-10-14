@@ -16,11 +16,11 @@ Al terminar sabrás guardar el historial de tu trabajo, subirlo a GitHub y colab
 En las PCs del laboratorio Git ya está instalado. Si quieres practicar en tu computadora, descárgalo de https://git-scm.com/.
 
 ## Sesiones
-| Sesión | Tema                                 | Carpeta                                      |
-|--------|--------------------------------------|----------------------------------------------|
-| 1      | Fundamentos y primer repositorio     | [sesion-1-fundamentos](sesion-1-fundamentos) |
-| 2      | Ramas, conflictos y deshacer errores | Próximamente                                 |
-| 3      | Colaboración real en GitHub          | Próximamente                                 |
+| Sesión | Tema                                 | Carpeta                                                |
+|--------|--------------------------------------|--------------------------------------------------------|
+| 1      | Fundamentos y primer repositorio     | [sesion-1-fundamentos](sesion-1-fundamentos)           |
+| 2      | Ramas, conflictos y deshacer errores | [sesion-2-ramas-conflictos](sesion-2-ramas-conflictos) |
+| 3      | Colaboración real en GitHub          | Próximamente                                           |
 
 ## Cómo usar este repositorio
 1. Entra a la carpeta de la sesión del día.
