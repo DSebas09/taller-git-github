@@ -117,9 +117,9 @@ Vas a agregar un término al glosario siguiendo el flujo completo. Ideas de tér
 **Pregunta:** ¿qué ganas con que otra persona lea tu cambio antes de que entre a `main`?
 
 ## Ejercicio 3: El push rechazado y `git pull --rebase`
-En la sesión 1 viste que GitHub rechaza tu `push` cuando tiene commits que tú no tienes. En equipo pasa seguido: alguien más subió algo a la rama mientras tú trabajabas.
+GitHub rechaza tu `push` cuando tiene commits que tú no tienes: no quiere que pierdas el trabajo de otra persona. En equipo pasa seguido: alguien más subió algo a la rama mientras tú trabajabas.
 
-Ya conoces una solución: `git pull --no-rebase`, que une las dos historias con un commit de merge. Hoy usas otra: `git pull --rebase` trae lo de GitHub y pone tus commits **encima**, uno tras otro, sin commit de merge. El historial queda en línea recta.
+La solución es `git pull --rebase`: trae lo de GitHub y pone tus commits **encima**, uno tras otro. El historial queda en línea recta y después el `push` ya pasa.
 
 1. **Prepara una rama nueva** con un segundo término en tu sección:
     ```bash
@@ -160,16 +160,16 @@ Ya conoces una solución: `git pull --no-rebase`, que une las dos historias con 
 
 **Lo lograste si:** el `push` del paso 4 pasó, `git log --oneline --graph -5` no muestra un commit de merge y `glosario.md` tiene el ejemplo y tu tercer término.
 
-**Si el `git pull --rebase` dice `CONFLICT`:** editaste la misma línea en la web y en tu PC. Cancela el rebase y usa lo que ya conoces de la sesión 2:
+**Si el `git pull --rebase` dice `CONFLICT`:** editaste la misma línea en la web y en tu PC. Cancela el rebase y haz el pull con un merge, para resolver el conflicto como en la sesión 2:
 ```bash
 git rebase --abort
 git pull --no-rebase --no-edit
 ```
-Resuelve el conflicto en `glosario.md` como en la sesión 2 y termina con `git add glosario.md`, `git commit -m "Resuelve conflicto del glosario"` y `git push`.
+`--no-rebase` le dice a Git que una las dos historias con un merge, y `--no-edit` acepta el mensaje del merge sin abrir el editor. Resuelve el conflicto en `glosario.md` como en la sesión 2 y termina con `git add glosario.md`, `git commit -m "Resuelve conflicto del glosario"` y `git push`.
 
 **Si algo salió raro:** no borres la carpeta. `git reflog` muestra todo lo que hiciste; pide ayuda a un instructor y desde ahí se recupera.
 
-**Pregunta:** en la sesión 1 usaste `git pull --no-rebase`. ¿Qué diferencia ves en `git log --oneline --graph` con lo que hiciste hoy?
+**Pregunta:** en el paso 3 tu commit no tenía nada malo. ¿Por qué GitHub lo rechazó?
 
 ### Extra opcional: un fork para contribuir a otro equipo
 Hazlo solo si tu equipo ya terminó el reto. Un fork es una copia de un repo ajeno en tu cuenta: sirve para proponer cambios a un proyecto donde no te invitaron.
