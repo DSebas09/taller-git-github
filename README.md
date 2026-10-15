@@ -20,7 +20,7 @@ En las PCs del laboratorio Git ya está instalado. Si quieres practicar en tu co
 |--------|--------------------------------------|--------------------------------------------------------|
 | 1      | Fundamentos y primer repositorio     | [sesion-1-fundamentos](sesion-1-fundamentos)           |
 | 2      | Ramas, conflictos y deshacer errores | [sesion-2-ramas-conflictos](sesion-2-ramas-conflictos) |
-| 3      | Colaboración real en GitHub          | Próximamente                                           |
+| 3      | Colaboración real en GitHub          | [sesion-3-colaboracion](sesion-3-colaboracion)         |
 
 ## Cómo usar este repositorio
 1. Entra a la carpeta de la sesión del día.
