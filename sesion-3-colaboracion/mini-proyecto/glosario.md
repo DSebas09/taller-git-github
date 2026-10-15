@@ -1,6 +1,6 @@
 # Glosario de Git
 
-Glosario armado por el equipo. Cada término va en una linea, con su definición en tus propias palabras.
+Glosario armado por el equipo. Cada termino va en una linea, con su definicion en tus propias palabras.
 
 ## Guardar cambios
 - **commit**: foto del proyecto en un momento dado, con un mensaje que dice que cambio.
